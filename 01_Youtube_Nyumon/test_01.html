@@ -1,0 +1,118 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- CDN(Vue.jsが用意してくれているサーバー)から読み込み -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<style>
+    .blue {
+        color: blue;
+    }
+    .red {
+        color: red;
+    }
+</style>
+
+
+<div id="app1">
+    app1: {{ message }}
+</div>
+<div id="app2">
+    <p>{{ count }}回クリックしました</p>
+    <button v-on:click="increment">カウントをふやす</button>
+</div>
+
+<br>
+<div id="app3">
+    <span v-if="seen">あいうえお</span>
+    <button v-on:click="off">表示ON,OFF</button>
+</div>
+
+<div id="app4">
+    <p v-bind:class="class1">{{ class1 }}です</p>
+</div>
+
+<div id="app5">
+    <ul>
+        <li v-for="todo in todos">
+            {{ todo.text }}
+        </li>
+    </ul>
+</div>
+
+<script>
+    const App1 = {
+        data() {
+            return {
+                message: "Hello!"
+            }
+        },
+    }
+    const App2 = {
+        data() {
+            return {
+                count: 0
+            }
+        },
+        methods: {
+            increment: function() {
+                this.count = (this.count  + 1) * 3
+            }
+        }
+    }
+    const App3 = {
+        data() {
+            return {
+                seen: true
+            }
+        },
+        methods: {
+            off: function() {
+                this.seen = !this.seen
+            }
+        }
+    }
+    const App4 = {
+        data() {
+            return {
+                class1: "blue"
+            }
+        },
+        methods: {
+        }
+    }
+    const App5 = {
+        data() {
+            return {
+                todos: [
+                    { text: 'PHP'},
+                    { text: 'Ruby'},
+                    { text: 'Python'},
+                ]
+            }
+        },
+        methods: {
+        }
+    }
+
+
+    app1 = Vue.createApp(App1)
+    app1.mount('#app1')
+
+    app2 = Vue.createApp(App2)
+    app2.mount('#app2')
+
+    app3 = Vue.createApp(App3)
+    app3.mount('#app3')
+
+    app4 = Vue.createApp(App4)
+    app4.mount('#app4')
+
+    app5 = Vue.createApp(App5)
+    app5.mount('#app5')
+
+</script>
+
+</body>
+</html>
