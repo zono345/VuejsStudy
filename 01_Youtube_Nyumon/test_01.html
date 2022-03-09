@@ -41,6 +41,30 @@
     </ul>
 </div>
 
+<div id="app6">
+    <ul>
+        <template1></template1>
+        <template1></template1>
+        <template1></template1>
+    </ul>
+</div>
+
+<div id="app7">
+    <ul>
+        <template2 prop1="次へ"></template2>
+        <template2 prop1="前へ"></template2>
+        <template2 :prop1="varString"></template2>
+    </ul>
+</div>
+
+<div id="app8">
+    <template8
+        v-for="item in itemList"
+        :prop81="item"
+        prop82="です"
+    ></template8>
+</div>
+
 <script>
     const App1 = {
         data() {
@@ -49,6 +73,10 @@
             }
         },
     }
+    app1 = Vue.createApp(App1)
+    app1.mount('#app1')
+
+
     const App2 = {
         data() {
             return {
@@ -61,6 +89,10 @@
             }
         }
     }
+    app2 = Vue.createApp(App2)
+    app2.mount('#app2')
+
+
     const App3 = {
         data() {
             return {
@@ -73,6 +105,10 @@
             }
         }
     }
+    app3 = Vue.createApp(App3)
+    app3.mount('#app3')
+
+
     const App4 = {
         data() {
             return {
@@ -82,6 +118,10 @@
         methods: {
         }
     }
+    app4 = Vue.createApp(App4)
+    app4.mount('#app4')
+
+
     const App5 = {
         data() {
             return {
@@ -95,22 +135,57 @@
         methods: {
         }
     }
-
-
-    app1 = Vue.createApp(App1)
-    app1.mount('#app1')
-
-    app2 = Vue.createApp(App2)
-    app2.mount('#app2')
-
-    app3 = Vue.createApp(App3)
-    app3.mount('#app3')
-
-    app4 = Vue.createApp(App4)
-    app4.mount('#app4')
-
     app5 = Vue.createApp(App5)
     app5.mount('#app5')
+
+
+    const App6 = {}
+    const app6 = Vue.createApp(App6)
+    app6.component('template1', {
+        template: `
+            <button>componentボタン</button>
+            <br>
+            `
+        })
+    app6.mount('#app6')
+
+
+    const App7 = {
+        data() {
+            return {
+                varString: "Hello!"
+            }
+        },
+    }
+    const app7 = Vue.createApp(App7)
+    app7.component('template2', {
+        props: ['prop1'],
+        template: `
+            <button>{{prop1}}</button>
+            <br>
+        `
+    })
+    app7.mount('#app7')
+
+    const App8 = {
+        data() {
+            return {
+                itemList: [
+                    {id: 0, text: '0番'},
+                    {id: 1, text: '1番'},
+                    {id: 2, text: '2番'}
+                ]
+            }
+        }
+    }
+    const app8 = Vue.createApp(App8)
+    app8.component('template8', {
+        props: ['prop81', 'prop82'],
+        template: `
+            <li>{{prop81.id}}は{{prop81.text}}{{prop82}}</li>
+        `
+    })
+
 
 </script>
 
